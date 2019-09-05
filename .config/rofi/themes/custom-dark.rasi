@@ -20,7 +20,7 @@
     selected-normal-background:  rgba ( 20, 20, 17, 100 % );
     border-color:                #000000;
     spacing:                     2;
-    separatorcolor:              #FF6F00;
+    separatorcolor:              #4E9A06;
     urgent-background:           rgba ( 39, 40, 34, 0 % );
     selected-urgent-background:  rgba ( 249, 38, 114, 100 % );
     alternate-urgent-foreground: @urgent-foreground;
