@@ -1,7 +1,10 @@
 #!/bin/sh
-xrandr --output HDMI-1-1 --left-of eDP-1-1 --auto
-feh --bg-fill /home/rafael/.config/wallpapers/hyper-beast.jpg
-sudo setxkbmap -model abnt2 -layout br -variant abnt2
+
+xrandr --output HDMI-1 --left-of eDP-1 --auto
+feh --bg-fill /home/rafael/.config/wallpapers/cyber.jpg
 compton &
-export QT_FONT_DPI=86
+nm-applet &
+pasystray &
+
+setxkbmap -model abnt2 -layout br -variant abnt2
 export SCRIPT_DIR=~/.config/i3blocks/scripts/
