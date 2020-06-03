@@ -22,4 +22,6 @@ set path=**
 set number
 set background=dark
 set termguicolors
+
+hi Normal guibg=NONE ctermbg=NONE
 colorscheme material-monokai
