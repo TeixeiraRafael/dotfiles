@@ -6,6 +6,7 @@ URxvt*termName:           rxvt-16color
 
 URxvt.scrollBar:          off
 URxvt.font:               xft:Hack:size=9:antialias=true
+URxvt.boldfont:		  xft:Hack-Bold:pixelsize=9
 URxvt.letterSpace: 	  -1
 URxvt.internalBorder:     0
 URxvt*selectToClipboard:  true
