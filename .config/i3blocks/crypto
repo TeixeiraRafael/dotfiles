@@ -21,4 +21,5 @@ conv_data = json.loads(r.text)
 price = float(btc_data['bpi']['USD']['rate_float'])
 conv_rate = float(conv_data['rates']['BRL'])
 
-print("%.2f" % (price * conv_rate))
+final = "R$ {:,.2f}".format(price * conv_rate)
+print(final)

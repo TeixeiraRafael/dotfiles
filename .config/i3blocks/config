@@ -34,7 +34,6 @@ markup=none
 # The second parameter overrides the mixer selection
 # See the script for details.
 [crypto]
-label=R$
 markup=pango
 interval=60
 instance=bitcoin
@@ -86,8 +85,8 @@ label=⚡
 interval=30
 
 [time]
-command=date '%H:%M:%S %d/%m/%Y'
-interval=60
+command=date '+%H:%M %d/%m/%Y'
+interval=5
 
 # Generic media player support
 #
