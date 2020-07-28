@@ -1,0 +1,24 @@
+#!/usr/bin/env python3
+# coding=utf-8
+
+import json
+import requests
+import os
+import sys
+
+PRICE_CHANGE_PERIOD = '1h' # Available: '1h', '24h', '7d'
+PRICE_CHANGE_URGENT_PERCENT = 10
+
+API_URL = 'https://api.coindesk.com/v1/bpi/currentprice.json' # CoinMarketCap API
+CONVERSION_URL = 'https://api.exchangeratesapi.io/latest?base=USD'
+
+r = requests.get(API_URL)
+btc_data = json.loads(r.text)
+
+r = requests.get(CONVERSION_URL)
+conv_data = json.loads(r.text)
+
+price = float(btc_data['bpi']['USD']['rate_float'])
+conv_rate = float(conv_data['rates']['BRL'])
+
+print("%.2f" % (price * conv_rate))
