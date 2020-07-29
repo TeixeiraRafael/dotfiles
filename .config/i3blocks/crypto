@@ -5,21 +5,63 @@ import json
 import requests
 import os
 import sys
+import subprocess
+import time
 
-PRICE_CHANGE_PERIOD = '1h' # Available: '1h', '24h', '7d'
-PRICE_CHANGE_URGENT_PERCENT = 10
+class bcolors:
+    GREEN = "<span color=\"#00FF00\">"
+    RED = "<span color=\"#FF0000\">"
+    YELLOW = "<span color=\"#FEE11A\">"
+    ENDC = '</span>'
 
 API_URL = 'https://api.coindesk.com/v1/bpi/currentprice.json' # CoinMarketCap API
 CONVERSION_URL = 'https://api.exchangeratesapi.io/latest?base=USD'
 
-r = requests.get(API_URL)
-btc_data = json.loads(r.text)
 
-r = requests.get(CONVERSION_URL)
-conv_data = json.loads(r.text)
+try:
+    r = requests.get(API_URL)
+    btc_data = json.loads(r.text)
 
-price = float(btc_data['bpi']['USD']['rate_float'])
-conv_rate = float(conv_data['rates']['BRL'])
+    r = requests.get(CONVERSION_URL)
+    conv_data = json.loads(r.text)
 
-final = "R$ {:,.2f}".format(price * conv_rate)
-print(final)
+    price = float(btc_data['bpi']['USD']['rate_float'])
+    conv_rate = float(conv_data['rates']['BRL'])
+
+    last_value = price * conv_rate
+    final = "R$ {:,.2f}".format(price * conv_rate)
+    os.system("echo \'" + bcolors.YELLOW + final + bcolors.ENDC + "\'")
+except:
+    pass
+
+while True:
+    try:
+        r = requests.get(API_URL)
+        btc_data = json.loads(r.text)
+
+        r = requests.get(CONVERSION_URL)
+        conv_data = json.loads(r.text)
+
+        price = float(btc_data['bpi']['USD']['rate_float'])
+        conv_rate = float(conv_data['rates']['BRL'])
+        
+        current_value = price * conv_rate
+        diff = (last_value / current_value) * 100
+        
+        str_diff = "{:.4f}%".format((100 - diff))
+        str_price = "R$ {:,.2f} ".format((price * conv_rate))
+
+        if(current_value == last_value):
+            time.sleep(1)
+            continue
+        elif (current_value > last_value):
+            final =  str_price + "(" + bcolors.GREEN + "+" + str_diff + bcolors.ENDC + ")"
+        else:
+            final =  str_price + "(" + bcolors.RED +  str_diff + bcolors.ENDC + ")"
+        
+        os.system("echo \'" + str(final) +"\'")
+        
+        last_value = current_value
+    except:
+        time.sleep(1)
+        continue

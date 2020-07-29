@@ -35,10 +35,8 @@ markup=none
 # See the script for details.
 [crypto]
 markup=pango
-interval=60
-instance=bitcoin
-command=~/.config/i3blocks/crypto
-color=#00ff00
+command=~/.config/i3blocks/crypto 
+interval=persist
 
 [volume]
 label=♪
