@@ -1,13 +1,13 @@
 #!/bin/sh
 
 xrandr --output HDMI-1 --left-of eDP-1 --auto
-feh --bg-fill /home/rafael/.config/wallpapers/cyber.jpg
+feh --bg-fill /home/rafael/.config/wallpapers/city.jpg
 
 compton &
 nm-applet &
 pasystray &
 
-xmodmap /home/rafael/.Xmodmap
 setxkbmap -model abnt2 -layout br -variant abnt2
+xmodmap /home/rafael/.Xmodmap
 
 export SCRIPT_DIR=~/.config/i3blocks/scripts/
